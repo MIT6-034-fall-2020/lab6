@@ -17,8 +17,19 @@ INF = float('inf')
 
 def id_tree_classify_point(point, id_tree):
     """Uses the input ID tree (an IdentificationTreeNode) to classify the point.
-    Returns the point's classification."""
-    raise NotImplementedError
+    Returns the point's classification.
+    
+    Apply_classifer to get next node, and pass in recursively
+    Else at Leaf Node and return the classification of node
+    """
+
+    try:
+        return id_tree_classify_point(point, id_tree.apply_classifier(point))
+    except:
+        return (id_tree.get_node_classification())
+    # return (id_tree.apply_classifier(point))
+
+    # raise NotImplementedError
 
 
 #### Part 1B: Splitting data with a classifier #################################
