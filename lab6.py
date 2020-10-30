@@ -93,9 +93,16 @@ def find_best_classifier(data, possible_classifiers, target_classifier):
     and a Classifier for determining the true classification of each point,
     finds and returns the classifier with the lowest disorder.  Breaks ties by
     preferring classifiers that appear earlier in the list.  If the best
-    classifier has only one branch, raises NoGoodClassifiersError."""
-    raise NotImplementedError
-
+    classifier has only one branch, raises NoGoodClassifiersError.
+    
+    Use min and key function
+    Check for one branch by using split_on_classifier
+    """
+    best_classifier = min(possible_classifiers, key=lambda x: average_test_disorder(data, x, target_classifier))
+    if len(split_on_classifier(data, best_classifier)) == 1:
+        raise NoGoodClassifiersError("Classifier has only one branch")
+    else:
+        return best_classifier
 
 ## To find the best classifier from 2014 Q2, Part A, uncomment:
 # print(find_best_classifier(tree_data, tree_classifiers, feature_test("tree_type")))
