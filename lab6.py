@@ -127,7 +127,10 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
 
     if id_tree_node.is_leaf():
         id_tree_node.set_classifier_and_expand(best_classifier, split)
-
+        branches = id_tree_node.get_branches()
+        for branch in branches:
+            construct_greedy_id_tree(split[branch], possible_classifiers, target_classifier, branches[branch])
+    
     return id_tree_node
     # else:
     #     return ("not done")    
