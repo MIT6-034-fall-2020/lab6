@@ -27,9 +27,6 @@ def id_tree_classify_point(point, id_tree):
         return id_tree_classify_point(point, id_tree.apply_classifier(point))
     except:
         return (id_tree.get_node_classification())
-    # return (id_tree.apply_classifier(point))
-
-    # raise NotImplementedError
 
 
 #### Part 1B: Splitting data with a classifier #################################
@@ -37,8 +34,18 @@ def id_tree_classify_point(point, id_tree):
 def split_on_classifier(data, classifier):
     """Given a set of data (as a list of points) and a Classifier object, uses
     the classifier to partition the data.  Returns a dict mapping each feature
-    values to a list of points that have that value."""
-    raise NotImplementedError
+    values to a list of points that have that value.
+    
+    Iterate through data using classifer to build a dictionary
+    """
+    classification = {}
+    for point in data:
+        key = classifier.classify(point)
+        if key in classification:
+            classification[key].append(point)
+        else:
+            classification[key] = [point]
+    return classification
 
 
 #### Part 1C: Calculating disorder #############################################
