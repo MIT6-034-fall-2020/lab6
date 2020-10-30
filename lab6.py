@@ -53,7 +53,10 @@ def split_on_classifier(data, classifier):
 def branch_disorder(data, target_classifier):
     """Given a list of points representing a single branch and a Classifier
     for determining the true classification of each point, computes and returns
-    the disorder of the branch."""
+    the disorder of the branch.
+
+    Use formula from specification
+    """
     classifications = split_on_classifier(data, target_classifier)
     nb = len(data)
     disorder = 0
@@ -65,9 +68,16 @@ def branch_disorder(data, target_classifier):
 def average_test_disorder(data, test_classifier, target_classifier):
     """Given a list of points, a feature-test Classifier, and a Classifier
     for determining the true classification of each point, computes and returns
-    the disorder of the feature-test stump."""
-    raise NotImplementedError
-
+    the disorder of the feature-test stump.
+    Algo: http://web.mit.edu/6.034/wwwbob/knn+idtree-notes.pdf
+    """
+    nt = len(data)
+    disorder = 0
+    test = split_on_classifier(data, test_classifier)
+    for branch in test:
+        nb = len(test[branch])
+        disorder += (nb/nt) * branch_disorder(test[branch], target_classifier)
+    return disorder
 
 ## To use your functions to solve part A2 of the "Identification of Trees"
 ## problem from 2014 Q2, uncomment the lines below and run lab6.py:
