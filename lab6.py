@@ -54,7 +54,13 @@ def branch_disorder(data, target_classifier):
     """Given a list of points representing a single branch and a Classifier
     for determining the true classification of each point, computes and returns
     the disorder of the branch."""
-    raise NotImplementedError
+    classifications = split_on_classifier(data, target_classifier)
+    nb = len(data)
+    disorder = 0
+    for classification in classifications:
+        nbc = len(classifications[classification])
+        disorder += (-1*nbc/nb) * log2(nbc/nb)
+    return disorder
 
 def average_test_disorder(data, test_classifier, target_classifier):
     """Given a list of points, a feature-test Classifier, and a Classifier
