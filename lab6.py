@@ -223,11 +223,11 @@ def euclidean_distance(point1, point2):
 
 def manhattan_distance(point1, point2):
     "Given two Points, computes and returns the Manhattan distance between them."
-    raise NotImplementedError
+    return sum([abs(i[0]-i[1]) for i in list(zip(point1,point2))])
 
 def hamming_distance(point1, point2):
     "Given two Points, computes and returns the Hamming distance between them."
-    raise NotImplementedError
+    return sum([0 if (i[0] == i[1]) else 1 for i in list(zip(point1,point2))])
 
 def cosine_distance(point1, point2):
     """Given two Points, computes and returns the cosine distance between them,
