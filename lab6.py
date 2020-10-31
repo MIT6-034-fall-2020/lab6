@@ -209,11 +209,6 @@ BOUNDARY_ANS_14 = 4 # can't do either
 def dot_product(u, v):
     """Computes dot product of two vectors u and v, each represented as a tuple
     or list of coordinates.  Assume the two vectors are the same length."""
-    # n = len(u)
-    # ans = 0
-    # for i in range(n):
-    #     ans += u[i]*v[i]
-    # return ans
     return sum([i[0]*i[1] for i in list(zip(u,v))])
 
 
