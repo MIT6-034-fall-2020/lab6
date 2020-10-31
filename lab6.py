@@ -286,13 +286,12 @@ def find_best_k_and_metric(data):
     four distance metrics defined above.  Returns a tuple (k, distance_metric),
     where k is an int and distance_metric is a function.
     
-    k should be odd integer (to avoid ties)
+    k should be odd integer (to avoid ties) according to recitation
     """
-    n = len(data)
-    distance_metric = [euclidean_distance, manhattan_distance, hamming_distance, cosine_distance]
-    return distance_metric
-    
-
+    possible_ks = [k for k in range(1, len(data) + 1, 2)]
+    distance_metrics = [euclidean_distance, manhattan_distance, hamming_distance, cosine_distance]
+    combos = [(k, d) for k in possible_ks for d in distance_metrics]
+    return max(combos, key=lambda x: cross_validate(data, x[0], x[1]))
 
 ## To find the best k and distance metric for 2014 Q2, part B, uncomment:
 # print(find_best_k_and_metric(knn_tree_data))
@@ -300,21 +299,21 @@ def find_best_k_and_metric(data):
 
 #### Part 2E: More multiple choice #############################################
 
-kNN_ANSWER_1 = None
-kNN_ANSWER_2 = None
-kNN_ANSWER_3 = None
+kNN_ANSWER_1 = "Overfitting" # sensitive to outliers
+kNN_ANSWER_2 = "Underfitting" # over generalizes
+kNN_ANSWER_3 = 4 # run above command
 
-kNN_ANSWER_4 = None
-kNN_ANSWER_5 = None
-kNN_ANSWER_6 = None
-kNN_ANSWER_7 = None
+kNN_ANSWER_4 = 4 # look at ratio of sugar and caffiene
+kNN_ANSWER_5 = 1 # look at values, instead of ratio
+kNN_ANSWER_6 = 3 # non-numeric
+kNN_ANSWER_7 = 3 # not all info relevant
 
 
 #### SURVEY ####################################################################
 
-NAME = None
-COLLABORATORS = None
-HOW_MANY_HOURS_THIS_LAB_TOOK = None
-WHAT_I_FOUND_INTERESTING = None
-WHAT_I_FOUND_BORING = None
-SUGGESTIONS = None
+NAME = "Nabib Ahmed"
+COLLABORATORS = "None"
+HOW_MANY_HOURS_THIS_LAB_TOOK = 8
+WHAT_I_FOUND_INTERESTING = "The k-NN portion"
+WHAT_I_FOUND_BORING = "ID Tree API was confusing"
+SUGGESTIONS = "Clarify what homogeneous vs non-homogeneous means in the scope of this pset"
