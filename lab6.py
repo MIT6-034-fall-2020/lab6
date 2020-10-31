@@ -156,17 +156,17 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
 
 #### Part 1E: Multiple choice ##################################################
 
-ANSWER_1 = None
-ANSWER_2 = None
-ANSWER_3 = None
+ANSWER_1 = "bark_texture"
+ANSWER_2 = "leaf_shape"
+ANSWER_3 = "orange_foliage"
 
-ANSWER_4 = None
-ANSWER_5 = None
-ANSWER_6 = None
-ANSWER_7 = None
+ANSWER_4 = [2,3] # draw path
+ANSWER_5 = [3] # will attempt to use all branches
+ANSWER_6 = [2] # random noise C should not be included
+ANSWER_7 = 2 # simpliest
 
-ANSWER_8 = None
-ANSWER_9 = None
+ANSWER_8 = "No"
+ANSWER_9 = "No"
 
 
 #### OPTIONAL: Construct an ID tree with medical data ##########################
