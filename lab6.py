@@ -272,14 +272,26 @@ def cross_validate(data, k, distance_metric):
     """Given a list of points (the data), an int 0 < k <= len(data), and a
     distance metric (a function), performs leave-one-out cross-validation.
     Return the fraction of points classified correctly, as a float."""
-    raise NotImplementedError
+    results = []
+    for i in range(len(data)):
+        train = data[:i] + data[i+1:] # remove element i from train
+        classification = knn_classify_point(data[i], train, k, distance_metric)
+        results.append(data[i].classification == classification)
+    return sum(results)/len(results)
+
 
 def find_best_k_and_metric(data):
     """Given a list of points (the data), uses leave-one-out cross-validation to
     determine the best value of k and distance_metric, choosing from among the
     four distance metrics defined above.  Returns a tuple (k, distance_metric),
-    where k is an int and distance_metric is a function."""
-    raise NotImplementedError
+    where k is an int and distance_metric is a function.
+    
+    k should be odd integer (to avoid ties)
+    """
+    n = len(data)
+    distance_metric = [euclidean_distance, manhattan_distance, hamming_distance, cosine_distance]
+    return distance_metric
+    
 
 
 ## To find the best k and distance metric for 2014 Q2, part B, uncomment:
