@@ -185,23 +185,23 @@ if DO_OPTIONAL_SECTION:
 
 #### Part 2A: Drawing Boundaries ###############################################
 
-BOUNDARY_ANS_1 = None
-BOUNDARY_ANS_2 = None
+BOUNDARY_ANS_1 = 3 # could partition by x and y or groups
+BOUNDARY_ANS_2 = 4 # can't split by x or y since diagonal, and middle region is closer to B
 
-BOUNDARY_ANS_3 = None
-BOUNDARY_ANS_4 = None
+BOUNDARY_ANS_3 = 1 # partition by x and y, but A should be merged
+BOUNDARY_ANS_4 = 2 # A is merged, but can't split by x and y
 
-BOUNDARY_ANS_5 = None
-BOUNDARY_ANS_6 = None
-BOUNDARY_ANS_7 = None
-BOUNDARY_ANS_8 = None
-BOUNDARY_ANS_9 = None
+BOUNDARY_ANS_5 = 2 # cluster by promixity
+BOUNDARY_ANS_6 = 4 # no threshold or promixity
+BOUNDARY_ANS_7 = 1 # not right cluster 
+BOUNDARY_ANS_8 = 4 # no division should be here
+BOUNDARY_ANS_9 = 4 # similar to 8, no division between As
 
-BOUNDARY_ANS_10 = None
-BOUNDARY_ANS_11 = None
-BOUNDARY_ANS_12 = None
-BOUNDARY_ANS_13 = None
-BOUNDARY_ANS_14 = None
+BOUNDARY_ANS_10 = 4 # no perfect division
+BOUNDARY_ANS_11 = 2 # cluster
+BOUNDARY_ANS_12 = 1 # straight lines (no cluster)
+BOUNDARY_ANS_13 = 4 # can't do either
+BOUNDARY_ANS_14 = 4 # can't do either
 
 
 #### Part 2B: Distance metrics #################################################
@@ -209,15 +209,22 @@ BOUNDARY_ANS_14 = None
 def dot_product(u, v):
     """Computes dot product of two vectors u and v, each represented as a tuple
     or list of coordinates.  Assume the two vectors are the same length."""
-    raise NotImplementedError
+    # n = len(u)
+    # ans = 0
+    # for i in range(n):
+    #     ans += u[i]*v[i]
+    # return ans
+    return sum([i[0]*i[1] for i in list(zip(u,v))])
+
 
 def norm(v):
     "Computes length of a vector v, represented as a tuple or list of coords."
-    raise NotImplementedError
+    # square root of the dot product of itself
+    return math.sqrt(dot_product(v,v))
 
 def euclidean_distance(point1, point2):
     "Given two Points, computes and returns the Euclidean distance between them."
-    raise NotImplementedError
+    
 
 def manhattan_distance(point1, point2):
     "Given two Points, computes and returns the Manhattan distance between them."
