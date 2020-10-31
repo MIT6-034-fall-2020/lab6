@@ -232,7 +232,9 @@ def hamming_distance(point1, point2):
 def cosine_distance(point1, point2):
     """Given two Points, computes and returns the cosine distance between them,
     where cosine distance is defined as 1-cos(angle_between(point1, point2))."""
-    raise NotImplementedError
+    num = dot_product(point1, point2)
+    den = norm(point1) * norm(point2)
+    return 1 - num/den
 
 
 #### Part 2C: Classifying points ###############################################
