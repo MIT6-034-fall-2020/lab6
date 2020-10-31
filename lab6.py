@@ -219,7 +219,7 @@ def norm(v):
 
 def euclidean_distance(point1, point2):
     "Given two Points, computes and returns the Euclidean distance between them."
-    
+    return math.sqrt(sum([(i[0]-i[1])**2 for i in list(zip(point1,point2))]))
 
 def manhattan_distance(point1, point2):
     "Given two Points, computes and returns the Manhattan distance between them."
